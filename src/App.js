@@ -23,9 +23,7 @@ function App() {
 
   const logOut = () => {
     User.logout();
-    setTimeout(() => {
-      window.location.reload()
-    }, 500) 
+    setCurrentUser(null); 
   };
 
   return (
@@ -82,7 +80,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/login">
+            <Login setCurrentUser={setCurrentUser} />
+          </Route>
           <Route path="/:username/notes" component={AllNotes} />
           <Route path="/:username/add" component={AddNote} />
           <Route path="/:username/edit/:id" component={EditNote} />

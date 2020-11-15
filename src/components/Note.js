@@ -14,7 +14,7 @@ const converter = new Showdown.Converter({
   tasklists: true
 });
 
-const Note = ({ note }) => {
+const Note = ({ note, notes, setNotes }) => {
   const date = new Date(note.date).toDateString();
   const time = new Date(note.date).toLocaleTimeString();
 
@@ -27,7 +27,7 @@ const Note = ({ note }) => {
     server
       .delete(`/${username}/remove/${id}`)
       .then(() => {
-        window.location.reload();
+        setNotes(notes.filter(note => note._id !== id));
       })
   };
 

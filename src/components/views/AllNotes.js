@@ -38,7 +38,7 @@ const AllNotes = () => {
             { notes.map( function(note) { 
                 return (  
                   <div className="column is-one-third" key={note._id}>
-                    <Note note={note} />
+                    <Note note={note} notes={notes} setNotes={setNotes} />
                   </div>
                 )         
               })

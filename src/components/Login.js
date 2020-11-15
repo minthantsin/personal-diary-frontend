@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import User from "../services/User";
 
-const Login = ({ history }) => {
+const Login = ({ setCurrentUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [message, setMessage] = useState("");
+
+  let history = useHistory();
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -22,8 +25,9 @@ const Login = ({ history }) => {
     User
       .login(username, password)
       .then(() => {
+          const user = User.getCurrentUser();
+          setCurrentUser(user);
           history.push(`/${username}/notes`);
-          window.location.reload();
         },
         (error) => {
           const resMessage =
