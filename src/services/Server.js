@@ -8,7 +8,7 @@ const server = axios.create({
 server.interceptors.request.use(
   config => {
     const token = User.getUserToken();
-    config.headers['x-access-token'] = token['x-access-token']
+    config.headers['x-access-token'] = token;
     return config;
   },
   error => Promise.reject(error)

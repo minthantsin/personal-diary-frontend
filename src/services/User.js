@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 const URL = "http://localhost:8000";
@@ -36,9 +35,9 @@ const getUserToken = () => {
   const user = getCurrentUser();
 
   if (user && user.accessToken) {
-    return { 'x-access-token': user.accessToken };
+    return user.accessToken;
   } else {
-    return {};
+    return null;
   }
 };
 
@@ -50,4 +49,4 @@ const User = {
   getUserToken
 };
 
-export default User; 
+export default User;
